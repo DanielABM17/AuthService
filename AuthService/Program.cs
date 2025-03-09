@@ -3,6 +3,8 @@ using AuthService.Repository;
 using AuthService.Repository.Contract;
 using Microsoft.EntityFrameworkCore;
 using AuthService.Utilities;
+using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
+using Microsoft.AspNetCore.DataProtection;
 
 public class Program{
 
@@ -25,7 +27,8 @@ builder.Services.AddDbContext<OticaContext>(options =>
 
 builder.Services.AddJwtAuthentication(builder.Configuration);
 builder.Services.AddCorsPolicy(builder.Configuration);
-
+builder.Services.AddDataProtection()
+    .PersistKeysToDbContext<OticaContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

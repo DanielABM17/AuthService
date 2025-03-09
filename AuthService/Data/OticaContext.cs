@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AuthService.Entities;
+using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace AuthService.Data
 {
-    public class OticaContext : DbContext
+    public class OticaContext : DbContext , IDataProtectionKeyContext
     {
         public OticaContext(DbContextOptions<OticaContext> options) : base(options)
         {
 
         }
+        public DbSet<DataProtectionKey> DataProtectionKeys { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Store> Stores { get; set; }
         

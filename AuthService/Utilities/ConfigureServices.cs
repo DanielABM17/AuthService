@@ -42,8 +42,8 @@ public static void AddCorsPolicy (this IServiceCollection services, Configuratio
         policy=>{
             policy.AllowAnyOrigin()
             .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();
+            .AllowAnyMethod();
+           
           
         }));
         }
