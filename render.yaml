@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: authservice
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: Jwt_Issuer
+        value: https://authservice.onrender.com
+      - key: Jwt_Audience
+        value: https://authservice.onrender.com
+      - key: Jwt_Key
+        value: thisismySecretKey0Lo9iKj87T4Rf6yHj
+      - key: ConnectionStrings__DefaultConnection
+        value: "Server=<RENDER_DB_HOST>;Database=AccountDB;User=<RENDER_DB_USER>;Password=<RENDER_DB_PASSWORD>;"
+    healthCheckPath: /
+    autoDeploy: true
