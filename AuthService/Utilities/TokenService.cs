@@ -12,7 +12,12 @@ namespace AuthService.Utilities
         public static string GenerateToken(User user, IConfiguration configuration)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.UTF8.GetBytes(configuration["Jwt:Key"]);
+            var jwtKey = configuration["Jwt:Key"];
+            if (string.IsNullOrEmpty(jwtKey))
+            {
+                throw new ArgumentNullException(nameof(configuration), "Jwt:Key is not configured.");
+            }
+            var key = Encoding.UTF8.GetBytes(jwtKey);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]
