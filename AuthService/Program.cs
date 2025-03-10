@@ -30,12 +30,14 @@ builder.Services.AddCorsPolicy(builder.Configuration);
 builder.Services.AddDataProtection()
     .PersistKeysToDbContext<OticaContext>();
 
-var app = builder.Build();
-
-builder.WebHost.ConfigureKestrel(options =>
+    builder.WebHost.ConfigureKestrel(options =>
 {
     options.ListenAnyIP(5000);
 });
+
+var app = builder.Build();
+
+
 Console.WriteLine("ASPNETCORE_ENVIRONMENT: " + Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
 Console.WriteLine("Jwt Key: " + builder.Configuration["Jwt:Key"]);
 Console.WriteLine("Jwt Issuer: " + builder.Configuration["Jwt:Issuer"]);
