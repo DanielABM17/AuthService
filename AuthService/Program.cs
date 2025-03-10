@@ -32,7 +32,10 @@ builder.Services.AddDataProtection()
 
 var app = builder.Build();
 
-
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5000);
+});
 Console.WriteLine("ASPNETCORE_ENVIRONMENT: " + Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
 Console.WriteLine("Jwt Key: " + builder.Configuration["Jwt:Key"]);
 Console.WriteLine("Jwt Issuer: " + builder.Configuration["Jwt:Issuer"]);
@@ -48,7 +51,6 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseHttpsRedirection();
 }
-app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors("_myAllowSpecificOrigins");
