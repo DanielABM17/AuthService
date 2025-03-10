@@ -30,29 +30,23 @@ builder.Services.AddCorsPolicy(builder.Configuration);
 builder.Services.AddDataProtection()
     .PersistKeysToDbContext<OticaContext>();
 
-    builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(5000);
-});
-
-var app = builder.Build();
-
-
 Console.WriteLine("ASPNETCORE_ENVIRONMENT: " + Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
 Console.WriteLine("Jwt Key: " + builder.Configuration["Jwt:Key"]);
 Console.WriteLine("Jwt Issuer: " + builder.Configuration["Jwt:Issuer"]);
 Console.WriteLine("Jwt Audience: " + builder.Configuration["Jwt:Audience"]);
 Console.WriteLine("Connection String: " + builder.Configuration.GetConnectionString("DefaultConnection"));
+
+var app = builder.Build();
+
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-if (!app.Environment.IsDevelopment())
-{
-    app.UseHttpsRedirection();
-}
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors("_myAllowSpecificOrigins");
