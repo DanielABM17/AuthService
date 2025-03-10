@@ -29,7 +29,15 @@ builder.Services.AddJwtAuthentication(builder.Configuration);
 builder.Services.AddCorsPolicy(builder.Configuration);
 builder.Services.AddDataProtection()
     .PersistKeysToDbContext<OticaContext>();
+
 var app = builder.Build();
+
+    var jwtKey = builder.Configuration["Jwt:Key"] ?? Environment.GetEnvironmentVariable("Jwt_Key");
+
+if (string.IsNullOrEmpty(jwtKey))
+{
+    throw new Exception("JWT Key is missing!");
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
