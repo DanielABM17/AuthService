@@ -32,12 +32,7 @@ builder.Services.AddDataProtection()
 
 var app = builder.Build();
 
-    var jwtKey = builder.Configuration["Jwt:Key"] ?? Environment.GetEnvironmentVariable("Jwt_Key");
 
-if (string.IsNullOrEmpty(jwtKey))
-{
-    throw new Exception("JWT Key is missing!");
-}
 Console.WriteLine("ASPNETCORE_ENVIRONMENT: " + Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
 Console.WriteLine("Jwt Key: " + builder.Configuration["Jwt:Key"]);
 Console.WriteLine("Jwt Issuer: " + builder.Configuration["Jwt:Issuer"]);
