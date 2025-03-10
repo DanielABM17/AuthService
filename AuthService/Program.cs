@@ -38,7 +38,11 @@ if (string.IsNullOrEmpty(jwtKey))
 {
     throw new Exception("JWT Key is missing!");
 }
-
+Console.WriteLine("ASPNETCORE_ENVIRONMENT: " + Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+Console.WriteLine("Jwt Key: " + builder.Configuration["Jwt:Key"]);
+Console.WriteLine("Jwt Issuer: " + builder.Configuration["Jwt:Issuer"]);
+Console.WriteLine("Jwt Audience: " + builder.Configuration["Jwt:Audience"]);
+Console.WriteLine("Connection String: " + builder.Configuration.GetConnectionString("DefaultConnection"));
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
