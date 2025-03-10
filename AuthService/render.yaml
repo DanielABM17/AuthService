@@ -7,11 +7,11 @@ services:
     envVars:
       - key: ASPNETCORE_ENVIRONMENT
         value: Production
-      - key: Jwt__Issuer
+      - key: Jwt_Issuer
         value: https://authservice-93h8.onrender.com
-      - key: Jwt__Audience
+      - key: Jwt_Audience
         value: https://authservice-93h8.onrender.com
-      - key: Jwt__Key
+      - key: Jwt_Key
         value: thisismySecretKey0Lo9iKj87T4Rf6yHj
       - key: ConnectionStrings__DefaultConnection
         value: "Server=<RENDER_DB_HOST>;Database=AccountDB;User=<RENDER_DB_USER>;Password=<RENDER_DB_PASSWORD>;"

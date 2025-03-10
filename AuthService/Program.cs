@@ -30,11 +30,11 @@ builder.Services.AddCorsPolicy(builder.Configuration);
 builder.Services.AddDataProtection()
     .PersistKeysToDbContext<OticaContext>();
 
-Console.WriteLine("ASPNETCORE_ENVIRONMENT: " + Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
-Console.WriteLine("Jwt Key: " + builder.Configuration["Jwt:Key"]);
-Console.WriteLine("Jwt Issuer: " + builder.Configuration["Jwt:Issuer"]);
-Console.WriteLine("Jwt Audience: " + builder.Configuration["Jwt:Audience"]);
-Console.WriteLine("Connection String: " + builder.Configuration.GetConnectionString("DefaultConnection"));
+Console.WriteLine($"ASPNETCORE_ENVIRONMENT: {Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}");
+Console.WriteLine($"Jwt Key: {Environment.GetEnvironmentVariable("Jwt_Key")}");
+Console.WriteLine($"Jwt Issuer: {Environment.GetEnvironmentVariable("Jwt_Issuer")}");
+Console.WriteLine($"Jwt Audience: {Environment.GetEnvironmentVariable("Jwt_Audience")}");
+Console.WriteLine($"Connection String: {Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection")}");
 
 var app = builder.Build();
 
